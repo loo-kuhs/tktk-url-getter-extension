@@ -52,6 +52,6 @@ function saveUrlsToFile(urls, username) {
   const blob = new Blob([urls], { type: 'text/plain' })
   const url = URL.createObjectURL(blob)
   anchorFileDownload.href = url
-  anchorFileDownload.download = `${username}.txt`
+  anchorFileDownload.download = `${username}-urls.txt`
   anchorFileDownload.click()
 }
