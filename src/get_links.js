@@ -1,32 +1,32 @@
-const buttonsDiv = document.querySelector(
-  '.tiktok-otme0h-DivShareFollowContainer'
-)
-const username = document.querySelector('[data-e2e="user-title"]').innerText
-
 const anchorFileDownload = document.createElement('a')
 const button = document.createElement('button')
 
-button.innerText = 'Get Links'
-anchorFileDownload.innerText = 'Download Links'
+window.onload = () => {
+  const buttonsDiv = document.querySelector('.tiktok-12ijsdd-H3CountInfos')
+  const username = document.querySelector('[data-e2e="user-title"]').textContent
 
-button.classList.add('btn-get__urls')
-anchorFileDownload.classList.add('btn-download__urls')
+  button.innerText = 'Get Links'
+  anchorFileDownload.innerText = 'Download Links'
 
-buttonsDiv.appendChild(button)
+  button.classList.add('btn-get__urls')
+  anchorFileDownload.classList.add('btn-download__urls')
 
-button.addEventListener('click', () => {
-  let userPostItemList = document.querySelector(
-    '[data-e2e="user-post-item-list"]'
-  )
+  buttonsDiv.appendChild(button)
 
-  const userPostItemListContent = userPostItemList.innerHTML
+  button.addEventListener('click', () => {
+    let userPostItemList = document.querySelector(
+      '[data-e2e="user-post-item-list"]'
+    )
 
-  const urls = extractUrlsFromHtml(userPostItemListContent)
-  const uniqueUrls = getUniqueUrls(urls)
-  const formattedUrls = formatUrls(uniqueUrls)
+    const userPostItemListContent = userPostItemList.innerHTML
 
-  saveUrlsToFile(formattedUrls, username)
-})
+    const urls = extractUrlsFromHtml(userPostItemListContent)
+    const uniqueUrls = getUniqueUrls(urls)
+    const formattedUrls = formatUrls(uniqueUrls)
+
+    saveUrlsToFile(formattedUrls, username)
+  })
+}
 
 function extractUrlsFromHtml(html) {
   const regex = /<a href="(.+?)"/g
@@ -52,6 +52,7 @@ function saveUrlsToFile(urls, username) {
   const blob = new Blob([urls], { type: 'text/plain' })
   const url = URL.createObjectURL(blob)
   anchorFileDownload.href = url
+  username = username.replace(/\s/g, '')
   anchorFileDownload.download = `${username}-urls.txt`
   anchorFileDownload.click()
 }

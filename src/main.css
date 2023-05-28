@@ -1,17 +1,16 @@
 .btn-get__urls {
-  margin: 10px;
-  padding: 10px;
+  align-items: baseline;
   background-color: #fe2c55;
-  color: white;
   border-radius: 4px;
-  min-height: 36px;
   border: none;
-  font-size: 18px;
-  font-weight: 600;
+  color: white;
   cursor: pointer;
   display: flex;
-  position: absolute;
-  left: 18px;
-  top: 99px;
-  transition: none 0s ease 0s;
+  font-size: 16px;
+  font-weight: 600;
+  height: 36px;
+  justify-content: center;
+  margin: 6px 0 0;
+  padding: 6px;
+  width: fit-content;
 }
