@@ -1,8 +1,9 @@
 const anchorFileDownload = document.createElement('a')
 const button = document.createElement('button')
-
 window.onload = () => {
-  const buttonsDiv = document.querySelector('.tiktok-12ijsdd-H3CountInfos')
+  console.log("Hello from get_links.js");
+  const buttonsDiv = document.querySelector('div.css-1xwagd1-DivShareFollowContainer')
+  console.log(`buttonsDiv: ${buttonsDiv}`);
   const username = document.querySelector('[data-e2e="user-title"]').textContent
 
   button.innerText = 'Get Links'
@@ -20,6 +21,7 @@ window.onload = () => {
 
     const userPostItemListContent = userPostItemList.innerHTML
 
+    console.log(userPostItemListContent)
     const urls = extractUrlsFromHtml(userPostItemListContent)
     const uniqueUrls = getUniqueUrls(urls)
     const formattedUrls = formatUrls(uniqueUrls)
