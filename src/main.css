@@ -1,11 +1,21 @@
-.css-1xwagd1-DivShareFollowContainer{
+.css-1xwagd1-DivShareFollowContainer {
   display: flex;
   flex-direction: row;
   margin: 0 auto;
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 36.0rem !important;
+  width: 36rem !important;
+}
+
+.tiktok-1xwagd1-DivShareFollowContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 36rem !important;
 }
 
 .btn-get__urls {
@@ -29,5 +39,4 @@
   box-sizing: border-box;
   min-width: 150px;
   line-height: 22px;
-
 }

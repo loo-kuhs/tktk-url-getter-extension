@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "TikTok URLs extractor",
   "description": "Extracts TikTok URLs from the current page",
-  "version": "1.0",
+  "version": "1.5",
   "permissions": ["downloads", "tabs", "activeTab"],
   "content_scripts": [
     {

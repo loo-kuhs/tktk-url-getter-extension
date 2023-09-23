@@ -1,9 +1,16 @@
 const anchorFileDownload = document.createElement('a')
 const button = document.createElement('button')
+
 window.onload = () => {
-  console.log("Hello from get_links.js");
-  const buttonsDiv = document.querySelector('div.css-1xwagd1-DivShareFollowContainer')
-  console.log(`buttonsDiv: ${buttonsDiv}`);
+  const buttonsDivCss = document.querySelector(
+    'div.css-1xwagd1-DivShareFollowContainer'
+  )
+
+  const buttonsDivTiktok = document.querySelector(
+    'div.tiktok-1xwagd1-DivShareFollowContainer'
+  )
+
+  console.log(`buttonsDiv: ${buttonsDivCss || buttonsDivTiktok}`)
   const username = document.querySelector('[data-e2e="user-title"]').textContent
 
   button.innerText = 'Get Links'
@@ -12,7 +19,8 @@ window.onload = () => {
   button.classList.add('btn-get__urls')
   anchorFileDownload.classList.add('btn-download__urls')
 
-  buttonsDiv.appendChild(button)
+  appendCorrectButton(buttonsDivCss)
+  appendCorrectButton(buttonsDivTiktok)
 
   button.addEventListener('click', () => {
     let userPostItemList = document.querySelector(
@@ -28,6 +36,13 @@ window.onload = () => {
 
     saveUrlsToFile(formattedUrls, username)
   })
+}
+
+function appendCorrectButton(buttonsDiv) {
+  if (buttonsDiv !== null) {
+    buttonsDiv.appendChild(button)
+    console.log(`button appended to ${buttonsDiv.innerText}`)
+  }
 }
 
 function extractUrlsFromHtml(html) {
