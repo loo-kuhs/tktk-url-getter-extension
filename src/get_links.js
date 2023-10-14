@@ -46,7 +46,7 @@ function appendCorrectButton(buttonsDiv) {
 }
 
 function extractUrlsFromHtml(html) {
-  const regex = /<a href="(.+?)"/g
+  const regex = /href="([^"]*)"/g
   const urls = []
   let match
 
@@ -57,11 +57,17 @@ function extractUrlsFromHtml(html) {
   return urls
 }
 
+function validateTikTokVideo(url) {
+  const regex = /https:\/\/www.tiktok.com\/@[^\/]+\/video\/[^\/]+\/?/
+  return regex.test(url)
+}
+
 function getUniqueUrls(urls) {
   return [...new Set(urls)]
 }
 
 function formatUrls(urls) {
+  urls = urls.filter(validateTikTokVideo)
   return urls.join('\n')
 }
 
