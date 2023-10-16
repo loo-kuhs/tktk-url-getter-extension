@@ -2,15 +2,10 @@ const anchorFileDownload = document.createElement('a')
 const button = document.createElement('button')
 
 window.onload = () => {
-  const buttonsDivCss = document.querySelector(
-    'div.css-1xwagd1-DivShareFollowContainer'
-  )
+  const divElements = document.querySelectorAll('div')
+  const regexQuerySelector =
+    /(css|tiktok)-[a-zA-Z0-9]+-DivShareFollowContainer/g
 
-  const buttonsDivTiktok = document.querySelector(
-    'div.tiktok-1xwagd1-DivShareFollowContainer'
-  )
-
-  console.log(`buttonsDiv: ${buttonsDivCss || buttonsDivTiktok}`)
   const username = document.querySelector('[data-e2e="user-title"]').textContent
 
   button.innerText = 'Get Links'
@@ -19,8 +14,11 @@ window.onload = () => {
   button.classList.add('btn-get__urls')
   anchorFileDownload.classList.add('btn-download__urls')
 
-  appendCorrectButton(buttonsDivCss)
-  appendCorrectButton(buttonsDivTiktok)
+  divElements.forEach((div) => {
+    if (regexQuerySelector.test(div.className)) {
+      appendCorrectButton(div)
+    }
+  })
 
   button.addEventListener('click', () => {
     let userPostItemList = document.querySelector(
@@ -29,7 +27,6 @@ window.onload = () => {
 
     const userPostItemListContent = userPostItemList.innerHTML
 
-    console.log(userPostItemListContent)
     const urls = extractUrlsFromHtml(userPostItemListContent)
     const uniqueUrls = getUniqueUrls(urls)
     const formattedUrls = formatUrls(uniqueUrls)
@@ -41,7 +38,6 @@ window.onload = () => {
 function appendCorrectButton(buttonsDiv) {
   if (buttonsDiv !== null) {
     buttonsDiv.appendChild(button)
-    console.log(`button appended to ${buttonsDiv.innerText}`)
   }
 }
 
