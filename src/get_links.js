@@ -3,8 +3,9 @@ const button = document.createElement('button')
 
 window.onload = () => {
   const divElements = document.querySelectorAll('div')
-  const regexQuerySelector =
+  const rgxSelectFollowContainer =
     /(css|tiktok)-[a-zA-Z0-9]+-DivShareFollowContainer/g
+  const rgxSelectUserSubtitle = /(css|tiktok)-[a-zA-Z0-9]+-DivEditContainer/g
 
   const username = document.querySelector('[data-e2e="user-title"]').textContent
 
@@ -15,16 +16,18 @@ window.onload = () => {
   anchorFileDownload.classList.add('btn-download__urls')
 
   divElements.forEach((div) => {
-    if (regexQuerySelector.test(div.className)) {
+    if (
+      rgxSelectFollowContainer.test(div.className) ||
+      rgxSelectUserSubtitle.test(div.className)
+    ) {
       appendCorrectButton(div)
     }
   })
 
   button.addEventListener('click', () => {
     let userPostItemList = document.querySelector(
-      '[data-e2e="user-post-item-list"]'
+      '[data-e2e="user-post-item-list"], [data-e2e="favorites-item-list"]'
     )
-
     const userPostItemListContent = userPostItemList.innerHTML
 
     const urls = extractUrlsFromHtml(userPostItemListContent)
