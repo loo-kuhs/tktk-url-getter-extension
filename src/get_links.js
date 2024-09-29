@@ -2,9 +2,10 @@ const anchorFileDownload = document.createElement('a')
 const button = document.createElement('button')
 
 window.onload = () => {
+  console.log('TikTok Video Downloader Extension is running...');
   const divElements = document.querySelectorAll('div')
   const rgxSelectFollowContainer =
-    /(css|tiktok)-[a-zA-Z0-9]+-DivShareFollowContainer/g
+    /(css|tiktok)-[a-zA-Z0-9]+-DivButtonPanelWrapper/g
   const rgxSelectUserSubtitle = /(css|tiktok)-[a-zA-Z0-9]+-DivEditContainer/g
 
   const username = document.querySelector('[data-e2e="user-title"]').textContent
